@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFireAuth } from "@angular/fire/auth";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-login",
@@ -7,7 +8,13 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
   styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
-  constructor(private afa: AngularFireAuthModule) {}
+  constructor(private afa: AngularFireAuth, private router: Router) {}
 
   ngOnInit() {}
+
+  loginUser = () => {
+    console.log("clicked");
+    // this.afa.auth.signInWithEmailAndPassword();
+    this.router.navigate(["first"]);
+  };
 }
