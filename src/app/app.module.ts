@@ -31,6 +31,10 @@ const appRoutes: Routes = [
   {
     path: "login",
     component: LoginComponent
+  },
+  {
+    path: "first",
+    component: FirstComponent
   }
   // {
   //   path: "setting",
