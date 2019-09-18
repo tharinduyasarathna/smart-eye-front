@@ -15,8 +15,20 @@ export class UserServiceService {
     return this.firestore.collection('users').snapshotChanges();
   }
 
-  createUser(record){
-    return this.firestore.collection('users').add(record);
+  createUser(user: User) {
+    const { email, password, userType, phone, name } = user;
+    this.afa.auth
+      .createUserWithEmailAndPassword(email, password)
+      .then(data => {
+        console.log("data", data);
+        const { uid } = this.afa.auth.currentUser;
+        this.afs
+          .collection("users")
+          .doc(uid)
+          .set(user);
+      })
+      .then(data => console.log("Success"));
+    // return this.firestore.collection("users").add(record);
   }
 
   updateUser(recordID,record){
