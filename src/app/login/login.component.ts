@@ -15,6 +15,6 @@ export class LoginComponent implements OnInit {
   loginUser = () => {
     console.log("clicked");
     // this.afa.auth.signInWithEmailAndPassword();
-    this.router.navigate(["first"]);
+    this.router.navigate(["home"]);
   };
 }
