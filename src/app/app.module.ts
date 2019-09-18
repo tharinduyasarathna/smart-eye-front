@@ -27,37 +27,31 @@ import { FormsModule, ReactiveFormsModule, FormGroup } from "@angular/forms";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 
 const appRoutes: Routes = [
-  { path: "", component: FirstComponent, data: { title: "First Component" } },
+  { path: "", redirectTo: "login", pathMatch: "full" },
   {
-    path: "first",
-    component: FirstComponent,
-    data: { title: "First Component" }
-  },
-  {
-    path: "second",
-    component: SecondComponent,
-    data: { title: "Second Component" }
-  },
-  {
-    path: "setting",
-    component: SettingComponent,
-    data: { title: "Setting Component" }
-  },
-  {
-    path: "history",
-    component: HistoryComponent,
-    data: { title: "History Component" }
-  },
-  {
-    path: "about",
-    component: AboutComponent,
-    data: { title: "About Component" }
-  },
-  {
-    path: "profile",
-    component: ProfileComponent,
-    data: { title: "Profile Component" }
+    path: "login",
+    component: LoginComponent
   }
+  // {
+  //   path: "setting",
+  //   component: SettingComponent,
+  //   data: { title: "Setting Component" }
+  // },
+  // {
+  //   path: "history",
+  //   component: HistoryComponent,
+  //   data: { title: "History Component" }
+  // },
+  // {
+  //   path: "about",
+  //   component: AboutComponent,
+  //   data: { title: "About Component" }
+  // },
+  // {
+  //   path: "profile",
+  //   component: ProfileComponent,
+  //   data: { title: "Profile Component" }
+  // }
 ];
 @NgModule({
   declarations: [
@@ -75,10 +69,7 @@ const appRoutes: Routes = [
     BrowserModule,
     MatCardModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(
-      appRoutes,
-      { useHash: true } // <-- debugging purposes only
-    ),
+    RouterModule.forRoot(appRoutes),
     CustomMaterialModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase),
