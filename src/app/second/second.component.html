@@ -1,65 +1,145 @@
 <div class="py-3">
   <div class="container">
-      <div class="row">
-          <div class="col-sm-12 col-md-6 col-lg-6">
-            <div class="card" style="min-width:100%;background-color: #1ABC9C">
-              <div class="card-block">
-                <h4 class="card-title text-center" style="color: white">Add new User</h4>
-              
-                <div class="form-group">
-                    <label style="color: white">Name :</label>
-                    <input type="text" class="form-control" [(ngModel)]="name" style="background-color: darkgray" autocomplete="false" placeholder="Enter Name">
-                  </div>
-                  <div class="form-group">
-                    <label style="color: white">Role :</label>
-                    <input type="tel" id="phone" class="form-control" [(ngModel)]="userType" style="background-color: darkgray" placeholder="Enter Role" maxlength="10" size="10">
-                  </div>                  
-                  <div class="form-group">
-                    <label style="color: white">Email address :</label>
-                    <input type="email" class="form-control" [(ngModel)]="email" style="background-color: darkgray" placeholder="Enter email">
-                  </div>
-                  <div class="form-group">
-                    <label style="color: white">Mobile :</label>
-                    <input type="text" class="form-control" [(ngModel)]="phone" style="background-color: darkgray" placeholder="Enter Mobile Number">
-                  </div>
-                  <span>
-                   <button mat-raised-button color="primary" type="button" (click)="CreateRecord()" [disabled]="!name || !email || !phone || !userType" ><i class="fas fa-user-plus"></i> Add User</button>
-                  </span>
-              
-              </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-6 col-lg-6">
+        <div class="card" style="min-width:100%;background-color: #1ABC9C">
+          <div class="card-block">
+            <h4 class="card-title text-center" style="color: white">
+              Add new User
+            </h4>
+
+            <div class="form-group">
+              <label style="color: white">Name :</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="name"
+                style="background-color: darkgray"
+                autocomplete="false"
+                placeholder="Enter Name"
+              />
             </div>
-          </div>
-          <div class="col-sm-12 col-md-6 col-lg-6">
-            <div class="card" style="min-width:100%;background-color: #1ABC9C">
-              <div class="card-block">
-                <h4 class="card-title text-center" style="color: white">Update User</h4>
-              <form method="get" name="myForm1">
-                <div class="form-group">
-                  <label style="color: white">Name :</label>
-                  <input type="text" class="form-control" style="background-color: darkgray" placeholder="Enter Name">
-                </div>
-                <div class="form-group">
-                  <label style="color: white">Password :</label>
-                  <input type="text" class="form-control" style="background-color: darkgray" placeholder="Enter Role">
-                </div>
-                <div class="form-group">
-                  <label style="color: white">Email address :</label>
-                  <input type="email" class="form-control" style="background-color: darkgray" placeholder="Enter email">
-                </div>
-                <div class="form-group">
-                  <label style="color: white">Role :</label>
-                  <input type="tel" id="phone" class="form-control" style="background-color: darkgray" placeholder="Enter Phone No" maxlength="10" size="10">
-                </div>
-                  
-                  <span>
-                   <button mat-raised-button color="primary" value="Submit" onclick="submitForm()"><i class="fas fa-user-plus"></i> Update User</button>
-                  </span>
-              </form>
-              </div>
+            <div class="form-group">
+              <label style="color: white">Password :</label>
+              <input
+                type="password"
+                class="form-control"
+                [(ngModel)]="password"
+                style="background-color: darkgray"
+                autocomplete="false"
+                placeholder="Enter Password"
+              />
             </div>
+            <div class="form-group">
+              <label style="color: white">Role :</label>
+              <input
+                type="tel"
+                id="phone"
+                class="form-control"
+                [(ngModel)]="userType"
+                style="background-color: darkgray"
+                placeholder="Enter Role"
+                maxlength="10"
+                size="10"
+              />
+            </div>
+            <div class="form-group">
+              <label style="color: white">Email address :</label>
+              <input
+                type="email"
+                class="form-control"
+                [(ngModel)]="email"
+                style="background-color: darkgray"
+                placeholder="Enter email"
+              />
+            </div>
+            <div class="form-group">
+              <label style="color: white">Mobile :</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="phone"
+                style="background-color: darkgray"
+                placeholder="Enter Mobile Number"
+              />
+            </div>
+            <span>
+              <button
+                mat-raised-button
+                color="primary"
+                type="button"
+                (click)="CreateRecord()"
+                [disabled]="!name || !email || !phone || !userType"
+              >
+                <i class="fas fa-user-plus"></i> Add User
+              </button>
+            </span>
           </div>
         </div>
-        <br><br>
+      </div>
+      <div class="col-sm-12 col-md-6 col-lg-6">
+        <div class="card" style="min-width:100%;background-color: #1ABC9C">
+          <div class="card-block">
+            <h4 class="card-title text-center" style="color: white">
+              Update User
+            </h4>
+            <form method="get" name="myForm1">
+              <div class="form-group">
+                <label style="color: white">Name :</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  style="background-color: darkgray"
+                  placeholder="Enter Name"
+                />
+              </div>
+              <div class="form-group">
+                <label style="color: white">Password :</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  style="background-color: darkgray"
+                  placeholder="Enter Role"
+                />
+              </div>
+              <div class="form-group">
+                <label style="color: white">Email address :</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  style="background-color: darkgray"
+                  placeholder="Enter email"
+                />
+              </div>
+              <div class="form-group">
+                <label style="color: white">Role :</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  class="form-control"
+                  style="background-color: darkgray"
+                  placeholder="Enter Phone No"
+                  maxlength="10"
+                  size="10"
+                />
+              </div>
+
+              <span>
+                <button
+                  mat-raised-button
+                  color="primary"
+                  value="Submit"
+                  onclick="submitForm()"
+                >
+                  <i class="fas fa-user-plus"></i> Update User
+                </button>
+              </span>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br /><br />
     <div class="row">
       <div class="col-sm-12 col-md-6 col-lg-12">
         <div class="card" style="min-width:90%;background-color: #1ABC9C">
@@ -76,25 +156,27 @@
                 </tr>
 
                 <tr *ngFor="let user of users">
-                  <td>{{user.name}}</td>
-                  <td>{{user.userType}}</td>
-                  <td>{{user.email}}</td>
-                  <td>{{user.phone}}</td>
+                  <td>{{ user.name }}</td>
+                  <td>{{ user.userType }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.phone }}</td>
                   <td>
                     <span>
-                    <button (click)="RemoveRecord(user.id)" mat-raised-button color="warn"><i class="fas fa-trash-alt"></i> Remove</button>
+                      <button
+                        (click)="RemoveRecord(user.id)"
+                        mat-raised-button
+                        color="warn"
+                      >
+                        <i class="fas fa-trash-alt"></i> Remove
+                      </button>
                     </span>
                   </td>
                 </tr>
-
               </table>
             </div>
-
           </div>
         </div>
       </div>
     </div>
-    
-   
   </div>
 </div>
