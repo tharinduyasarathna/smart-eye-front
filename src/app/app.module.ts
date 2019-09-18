@@ -33,29 +33,42 @@ const appRoutes: Routes = [
     component: LoginComponent
   },
   {
-    path: "first",
-    component: FirstComponent
+    path: "home",
+    component: NavigationComponent,
+    children: [
+      { path: "", redirectTo: "first", pathMatch: "full" },
+      {
+        path: "setting",
+        component: SettingComponent,
+        data: { title: "Setting Component" }
+      },
+      {
+        path: "first",
+        component: FirstComponent,
+        data: { title: "Setting Component" }
+      },
+      {
+        path: "second",
+        component: SecondComponent,
+        data: { title: "Setting Component" }
+      },
+      {
+        path: "history",
+        component: HistoryComponent,
+        data: { title: "History Component" }
+      },
+      {
+        path: "about",
+        component: AboutComponent,
+        data: { title: "About Component" }
+      },
+      {
+        path: "profile",
+        component: ProfileComponent,
+        data: { title: "Profile Component" }
+      }
+    ]
   }
-  // {
-  //   path: "setting",
-  //   component: SettingComponent,
-  //   data: { title: "Setting Component" }
-  // },
-  // {
-  //   path: "history",
-  //   component: HistoryComponent,
-  //   data: { title: "History Component" }
-  // },
-  // {
-  //   path: "about",
-  //   component: AboutComponent,
-  //   data: { title: "About Component" }
-  // },
-  // {
-  //   path: "profile",
-  //   component: ProfileComponent,
-  //   data: { title: "Profile Component" }
-  // }
 ];
 @NgModule({
   declarations: [
