@@ -45,12 +45,12 @@ const appRoutes: Routes = [
       {
         path: "first",
         component: FirstComponent,
-        data: { title: "Setting Component" }
+        data: { title: "first Component" }
       },
       {
         path: "second",
         component: SecondComponent,
-        data: { title: "Setting Component" }
+        data: { title: "second Component" }
       },
       {
         path: "history",
