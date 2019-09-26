@@ -15,7 +15,7 @@
                 type="text"
                 class="form-control"
                 autocomplete="false"
-                placeholder="Enter Name"
+                value="{{ currentUser }}"
               />
 
               <label style="color: white">Current Password :</label>
@@ -34,7 +34,7 @@
               <label style="color: white">New Password :</label>
               <i class="fa fa-key icon" style="background-color: #485B6E"></i>
               <input
-                type="tel"
+                type="password"
                 class="form-control"
                 placeholder="Enter New Password"
                 maxlength="10"
@@ -46,7 +46,7 @@
                 style="background-color: #485B6E"
               ></i>
               <input
-                type="tel"
+                type="password"
                 class="form-control"
                 placeholder="Enter New Password Again"
                 maxlength="10"
@@ -62,7 +62,7 @@
               <input
                 type="email"
                 class="form-control"
-                placeholder="Enter Email"
+                value="{{ currentEmail }}"
               />
               <label style="color: white">Mobile :</label>
               <i
@@ -73,15 +73,24 @@
                 type="text"
                 id="phone"
                 class="form-control"
-                placeholder="Enter Mobile Number"
+                value="{{ currentPhone }}"
               />
             </div>
             <span>
               <button
                 mat-raised-button
+                color="warn"
+                type="button"
+                style="float: right;margin: 10px"
+                (click)="refresh()"
+              >
+                <i class="fas fa-ban"></i> Cancle
+              </button>
+              <button
+                mat-raised-button
                 color="primary"
                 type="button"
-                style="float: right"
+                style="float: right;margin: 10px"
                 (click)="UpdateRecord()"
               >
                 <i class="fas fa-user-plus"></i> Update
