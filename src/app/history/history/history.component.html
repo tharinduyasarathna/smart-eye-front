@@ -8,167 +8,21 @@
             <div style="overflow-y:scroll; overflow-x: auto">
               <table fixed-header >
                 <tr>
-                  <th style="color: white">Id</th>
-                  <th style="color: white">Name</th>
-                  <th style="color: white">Date</th>                  
+                  <th style="color: white">Name | Date</th>
+                  <th style="color: white">View Image</th>                 
                   <th style="color: white">Remove</th>
                 </tr>
 
-                <tr>
-                  <td>Jill</td>
-                  <td>Student</td>
-                  <td>123a@a.com</td>
-                 
+                <tr *ngFor="let image of imageData | async ">
+                  <td>{{image.imgName}}</td>
+                  <td><img [src]="image.imgUrl" style="width: 100%; height: 50%;"></td>
                   <td>
                     <span>
-                    <button  mat-raised-button color="warn"><i class="fas fa-trash-alt"></i> Remove</button>
+                    <button   (click)="RemoveImage(image.id)" mat-raised-button color="warn"><i class="fas fa-trash-alt"></i> Remove</button>
                     </span>
                   </td>
                 </tr>
-                <tr>
-                  <td>Jill</td>
-                  <td>Student</td>
-                  <td>123a@a.com</td>
-                 
-                  <td>
-                    <span>
-                    <button  mat-raised-button color="warn"><i class="fas fa-trash-alt"></i> Remove</button>
-                    </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Jill</td>
-                  <td>Student</td>
-                  <td>123a@a.com</td>
-                 
-                  <td>
-                    <span>
-                    <button  mat-raised-button color="warn"><i class="fas fa-trash-alt"></i> Remove</button>
-                    </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Jill</td>
-                  <td>Student</td>
-                  <td>123a@a.com</td>
-                 
-                  <td>
-                    <span>
-                    <button  mat-raised-button color="warn"><i class="fas fa-trash-alt"></i> Remove</button>
-                    </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Jill</td>
-                  <td>Student</td>
-                  <td>123a@a.com</td>
-                 
-                  <td>
-                    <span>
-                    <button  mat-raised-button color="warn"><i class="fas fa-trash-alt"></i> Remove</button>
-                    </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Jill</td>
-                  <td>Student</td>
-                  <td>123a@a.com</td>
-                 
-                  <td>
-                    <span>
-                    <button  mat-raised-button color="warn"><i class="fas fa-trash-alt"></i> Remove</button>
-                    </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Jill</td>
-                  <td>Student</td>
-                  <td>123a@a.com</td>
-                 
-                  <td>
-                    <span>
-                    <button  mat-raised-button color="warn"><i class="fas fa-trash-alt"></i> Remove</button>
-                    </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Jill</td>
-                  <td>Student</td>
-                  <td>123a@a.com</td>
-                 
-                  <td>
-                    <span>
-                    <button  mat-raised-button color="warn"><i class="fas fa-trash-alt"></i> Remove</button>
-                    </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Jill</td>
-                  <td>Student</td>
-                  <td>123a@a.com</td>
-                 
-                  <td>
-                    <span>
-                    <button  mat-raised-button color="warn"><i class="fas fa-trash-alt"></i> Remove</button>
-                    </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Jill</td>
-                  <td>Student</td>
-                  <td>123a@a.com</td>
-                 
-                  <td>
-                    <span>
-                    <button  mat-raised-button color="warn"><i class="fas fa-trash-alt"></i> Remove</button>
-                    </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Jill</td>
-                  <td>Student</td>
-                  <td>123a@a.com</td>
-                 
-                  <td>
-                    <span>
-                    <button  mat-raised-button color="warn"><i class="fas fa-trash-alt"></i> Remove</button>
-                    </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Jill</td>
-                  <td>Student</td>
-                  <td>123a@a.com</td>
-                 
-                  <td>
-                    <span>
-                    <button  mat-raised-button color="warn"><i class="fas fa-trash-alt"></i> Remove</button>
-                    </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Eve</td>
-                  <td>Student</td>
-                  <td>123a@a.com</td>
-                  
-                  <td>
-                    <span>
-                      <button mat-raised-button color="warn"><i class="fas fa-trash-alt"></i> Remove</button>
-                    </span>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>Adam</td>
-                  <td>Student</td>
-                  <td>123a@a.com</td>
-                  
-                  <td>
-                    <span>
-                    <button mat-raised-button color="warn"><i class="fas fa-trash-alt"></i> Remove</button>
-                    </span>
-                  </td>
-                </tr>
+                
               </table>
             </div>
 
