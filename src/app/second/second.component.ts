@@ -26,12 +26,13 @@ export class SecondComponent implements OnInit {
         return {
           id: e.payload.doc.id,
           isEdit: false,
-          name: e.payload.doc.data()["Name"],
-          email: e.payload.doc.data()["Email"],
-          password: e.payload.doc.data()["Password"],
-          phone: e.payload.doc.data()["Phone"],
-          userType: e.payload.doc.data()["Role"]
+          name: e.payload.doc.data()["name"],
+          email: e.payload.doc.data()["email"],
+          password: e.payload.doc.data()["password"],
+          phone: e.payload.doc.data()["phone"],
+          userType: e.payload.doc.data()["userType"]
         };
+        
       });
       console.log(this.users);
     });
