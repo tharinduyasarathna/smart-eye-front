@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import io from 'socket.io-client';
-import { Chart, pattern } from 'chart.js';
+import { Chart } from 'chart.js';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 
 @Component({
@@ -10,7 +11,9 @@ import { Chart, pattern } from 'chart.js';
 })
 export class FirstComponent implements OnInit {
 
-  constructor() { }
+  constructor(private afs:AngularFirestore) { 
+    
+  }
 
   title = 'app';
   socket = io.connect('localhost:9500');
@@ -18,8 +21,19 @@ export class FirstComponent implements OnInit {
   cpuChart = undefined;
   cpuType = '';
   noOfCpu = '';
+  status:any[];
+
+  // Checkbox status check
+  alarm = false;
+  notification = false;
+
+  @Input() name: string;
 
   ngOnInit() {
+    this.afs.collection('metadata').doc('dashboard-settings').valueChanges().subscribe((data)=>{
+      this.alarm = data['alarm'];
+      this.notification = data['notification']
+    })
     const ctx = document.getElementById('mChart');
     const doughnutGraphData = {
       datasets: [{
@@ -97,6 +111,22 @@ export class FirstComponent implements OnInit {
     this.cpuType = connectData.types;
     this.noOfCpu = connectData.cpus;
   }
+
+  checkboxToggle =  (type:string) => {
+    if(type === "alarm"){
+      this.afs.collection('metadata').doc('dashboard-settings').update({
+        alarm : !this.alarm,
+  
+      })
+    }else{
+      this.afs.collection('metadata').doc('dashboard-settings').update({
+        notification : !this.notification,
+  
+      })
+    }
+  }
+
+  
 
 }
 

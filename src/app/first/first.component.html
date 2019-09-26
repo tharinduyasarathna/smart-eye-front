@@ -51,7 +51,7 @@
           <div class="custom-control custom-switch text-center">
            Off
             <label class="switch">
-              <input type="checkbox">
+              <input type="checkbox" [(ngModel)]="alarm" (click)="checkboxToggle('alarm')">
               <span class="slider round"></span>
             </label>
             On
@@ -84,12 +84,17 @@
             <br>
             <div class="custom-control custom-switch text-center">
               Off
-              <label class="switch">
-                <input type="checkbox">
+              <label class="switch"  >
+                <input  type="checkbox" [(ngModel)]="notification" (click)="checkboxToggle('notification')" >
                 <span class="slider round"></span>
+
+                
               </label>
               On
+              
             </div>
+
+           
             <br>
           </div>
           <br>
@@ -102,10 +107,8 @@
               <h4 class="text-center" style="color: white">System Monitor</h4>
               <hr>
               
-            </div>
-   
-              
-                  <div style="background:darkgray; margin: 5px; " class="custom-control custom-switch text-center">
+            </div> 
+                              <div style="background:darkgray; margin: 5px; " class="custom-control custom-switch text-center">
                       <div class="col-md-8">
                           <h4>Memory</h4>
                           <canvas id="mChart" width="400" height="400"></canvas>
