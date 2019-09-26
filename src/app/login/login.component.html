@@ -11,12 +11,19 @@
         <h4 style="color: white;">Sign In</h4>
       </div>
       <div class="card-body">
-        <form>
+        <form [formGroup]="loginForm">
           <div class="input-group form-group">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-user"></i></span>
             </div>
-            <input type="text" class="form-control" placeholder="username" />
+            <input
+              type="text"
+              class="form-control"
+              placeholder="usermail"
+              formControlName="userEmail"
+              required
+              autofocus
+            />
           </div>
           <div class="input-group form-group ">
             <div class="input-group-prepend">
@@ -25,7 +32,9 @@
             <input
               type="password"
               class="form-control"
+              formControlName="userPassword"
               placeholder="password"
+              required
             />
           </div>
           <div class="row align-items-center remember">
@@ -37,6 +46,7 @@
               value="Login"
               style="background-color: #FFC312"
               class="btn float-right login_btn"
+              [disabled]="loginForm.invalid"
               (click)="loginUser()"
             />
           </div>

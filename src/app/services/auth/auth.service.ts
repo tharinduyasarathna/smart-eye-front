@@ -77,15 +77,24 @@ export class AuthService {
   }
 
   // Returns true when user is looged in and email is verified
-  get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('user'));
-    return (user !== null && user.emailVerified !== false) ? true : false;
+  get authenticated(): boolean {
+    return (this.afAuth.authState !== null) ? true : false;
   }
 
-  // Sign in with Google
-  GoogleAuth() {
-    return this.AuthLogin(new auth.GoogleAuthProvider());
-  }
+  // get isLoggedIn(): boolean {
+  //   const user = JSON.parse(localStorage.getItem('user'));
+  //   return (user !== null && user.emailVerified !== false) ? true : false;
+  // }
+
+  isLoggedIn() {
+    if (this.userData == null ) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+
+  
 
   // Auth logic to run auth providers
   AuthLogin(provider) {
@@ -121,10 +130,15 @@ export class AuthService {
   }
 
   // Sign out 
-  SignOut() {
-    return this.afAuth.auth.signOut().then(() => {
-      localStorage.removeItem('user');
-      this.router.navigate(['sign-in']);
-    })
+  logout() {
+    this.afAuth.auth.signOut()
+    .then((res) => this.router.navigate(['login']));
   }
+
+  // SignOut() {
+  //   return this.afAuth.auth.signOut().then(() => {
+  //     localStorage.removeItem('user');
+  //     this.router.navigate(['sign-in']);
+  //   })
+  // }
 }
