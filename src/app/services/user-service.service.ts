@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { User } from "../models/user.model";
-import { FormGroup } from "@angular/forms";
 import { AngularFireAuth } from "@angular/fire/auth";
 
 @Injectable({
@@ -23,7 +22,7 @@ export class UserServiceService {
 
   
   createUser(user: User) {
-    const { email, password, userType, phone, name } = user;
+    const { email, password } = user;
     this.afa.auth
       .createUserWithEmailAndPassword(email, password)
       .then(data => {
@@ -34,7 +33,7 @@ export class UserServiceService {
           .doc(uid)
           .set(user);
       })
-      .then(data => console.log("Success"));
+      .then(() => console.log("Success"));
     // return this.firestore.collection("users").add(record);
   }
 
