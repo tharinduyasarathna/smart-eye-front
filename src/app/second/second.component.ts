@@ -48,17 +48,7 @@ export class SecondComponent implements OnInit {
     };
 
     this.userService.createUser(record);
-    // .then(resp => {
-    //   this.name = "";
-    //   this.email = "";
-    //   // this.password = "";
-    //   this.phone = "";
-    //   this.userType = "";
-    //   console.log(resp);
-    // })
-    // .catch(error => {
-    //   console.log(error);
-    // });
+   
   }
 
   RemoveRecord(rowID) {

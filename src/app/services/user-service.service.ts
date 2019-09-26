@@ -42,6 +42,6 @@ export class UserServiceService {
   }
 
   deleteUser(record_id) {
-    this.afs.doc("users/" + record_id).delete();
+    this.afs.doc("users/" + record_id).delete();    
   }
 }
