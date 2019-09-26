@@ -74,16 +74,7 @@ export class SecondComponent implements OnInit {
     record.EditPhone = record.Phone;
   }
 
-  UpdateRecord(recordRow) {
-    let record = {};
-    record["Name"] = recordRow.EditName;
-    record["Email"] = recordRow.EditEmail;
-    // record['Password'] = recordRow.EditPassword;
-    record["Role"] = recordRow.EditRole;
-    record["Phone"] = recordRow.EditPhone;
-    this.userService.updateUser(recordRow.id, record);
-    recordRow.isEdit = false;
-  }
+ 
 
   // create(user:User){
   //   this.userService.createUser(user);
