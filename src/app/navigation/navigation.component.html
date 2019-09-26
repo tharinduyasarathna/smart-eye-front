@@ -25,9 +25,9 @@
           </form> -->
           <div class="navbar-nav">
             <span><img src="../assets/images/icon1.png"/></span>
-            <a href="#" routerLink="profile" class="nav-item nav-link"
-              >{{ currentUser }}</a
-            >
+            <a href="#" routerLink="profile" class="nav-item nav-link">{{
+              currentUser
+            }}</a>
           </div>
         </div>
       </nav>
@@ -56,7 +56,10 @@
       <a mat-list-item routerLink="about" style="color: white"
         ><i class="fas fa-address-card"></i> &nbsp;&nbsp;About</a
       >
-      <br /><br /><br /><br /><br />
+      <a mat-list-item style="color: white"
+        ><i class="fa fa-user-lock"></i> &nbsp;&nbsp;Logout</a
+      >
+      <br><br>
       <div class="bottom-text">
         <h5 style="color: white"><i class="fas fa-headset"></i> Support</h5>
         <small>tharindu@gmail.com</small><br />
@@ -79,5 +82,3 @@
     <router-outlet></router-outlet>
   </mat-drawer-content>
 </mat-drawer-container>-->
-
-
