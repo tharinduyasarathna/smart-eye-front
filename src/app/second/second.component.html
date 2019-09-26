@@ -7,63 +7,67 @@
             <h4 class="card-title text-center" style="color: white">
               Add new User
             </h4>
-            <hr>
+            <hr />
 
             <div class="form-group form-inline ">
-              
               <label style="color: white">Name :</label>
               <i class="fa fa-user icon " style="background-color: #485B6E"></i>
               <input
                 type="text"
                 class="form-control"
-                [(ngModel)]="name"               
+                [(ngModel)]="name"
                 autocomplete="false"
                 placeholder="Enter Name"
               />
-            
-            
-           
+
               <label style="color: white">Password :</label>
               <i class="fa fa-key icon" style="background-color: #485B6E"></i>
               <input
                 type="password"
                 class="form-control"
-                [(ngModel)]="password"               
+                [(ngModel)]="password"
                 autocomplete="false"
                 placeholder="Enter Password"
               />
-            
-          </div>
+            </div>
             <div class="form-group form-inline">
-              <label style="color: white">Role         :</label>
-              <i class="fa fa-id-card icon" style="background-color: #485B6E"></i>
+              <label style="color: white">Role :</label>
+              <i
+                class="fa fa-id-card icon"
+                style="background-color: #485B6E"
+              ></i>
               <input
                 type="tel"
-               
                 class="form-control"
-                [(ngModel)]="userType"               
+                [(ngModel)]="userType"
                 placeholder="Enter Role"
                 maxlength="10"
                 size="10"
               />
-            
+
               <label style="color: white">Email address :</label>
-              <i class="fa fa-envelope icon" style="background-color: #485B6E"></i>
+              <i
+                class="fa fa-envelope icon"
+                style="background-color: #485B6E"
+              ></i>
               <input
                 type="email"
                 class="form-control"
-                [(ngModel)]="email"                
+                [(ngModel)]="email"
                 placeholder="Enter email"
               />
             </div>
             <div class="form-group form-inline">
               <label style="color: white">Mobile :</label>
-              <i class="fa fa-phone icon" style="background-color: #485B6E; "></i>
+              <i
+                class="fa fa-phone icon"
+                style="background-color: #485B6E; "
+              ></i>
               <input
                 type="text"
                 id="phone"
                 class="form-control"
-                [(ngModel)]="phone"                
+                [(ngModel)]="phone"
                 placeholder="Enter Mobile Number"
               />
             </div>
@@ -150,35 +154,34 @@
         <div class="card" style="min-width:90%;background-color: #1ABC9C">
           <div class="card-block">
             <h4 class="card-title text-center" style="color: white">Users</h4>
-           <hr>
-              <table>
-                <tr>
-                  <th style="color: white">First Name</th>
-                  <th style="color: white">Role</th>
-                  <th style="color: white">E-mail</th>
-                  <th style="color: white">Mobile-No</th>
-                  <th style="color: white">Remove user</th>
-                </tr>
+            <hr />
+            <table>
+              <tr>
+                <th style="color: white">First Name</th>
+                <th style="color: white">Role</th>
+                <th style="color: white">E-mail</th>
+                <th style="color: white">Mobile-No</th>
+                <th style="color: white">Remove user</th>
+              </tr>
 
-                <tr *ngFor="let user of users">
-                  <td>{{ user.name }}</td>
-                  <td>{{ user.userType }}</td>
-                  <td>{{ user.email }}</td>
-                  <td>{{ user.phone }}</td>
-                  <td>
-                    <span>
-                      <button
-                        (click)="RemoveRecord(user.id)"
-                        mat-raised-button
-                        color="warn"
-                      >
-                        <i class="fas fa-trash-alt"></i> Remove
-                      </button>
-                    </span>
-                  </td>
-                </tr>
-              </table>
-            
+              <tr *ngFor="let user of users">
+                <td>{{ user.name }}</td>
+                <td>{{ user.userType }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.phone }}</td>
+                <td>
+                  <span>
+                    <button
+                      (click)="RemoveRecord(user.id)"
+                      mat-raised-button
+                      color="warn"
+                    >
+                      <i class="fas fa-trash-alt"></i> Remove
+                    </button>
+                  </span>
+                </td>
+              </tr>
+            </table>
           </div>
         </div>
       </div>
