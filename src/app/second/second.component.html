@@ -1,65 +1,64 @@
 <div class="py-3">
   <div class="container">
     <div class="row">
-      <div class="col-sm-12 col-md-6 col-lg-6">
+      <div class="col-sm-12 col-md-12 col-lg-12">
         <div class="card" style="min-width:100%;background-color: #1ABC9C">
           <div class="card-block">
             <h4 class="card-title text-center" style="color: white">
               Add new User
             </h4>
+            <hr>
 
-            <div class="form-group">
+            <div class="form-group form-inline ">
+              
               <label style="color: white">Name :</label>
               <input
                 type="text"
                 class="form-control"
-                [(ngModel)]="name"
-                style="background-color: darkgray"
+                [(ngModel)]="name"               
                 autocomplete="false"
                 placeholder="Enter Name"
               />
-            </div>
-            <div class="form-group">
+            
+            
+           
               <label style="color: white">Password :</label>
               <input
                 type="password"
                 class="form-control"
-                [(ngModel)]="password"
-                style="background-color: darkgray"
+                [(ngModel)]="password"               
                 autocomplete="false"
                 placeholder="Enter Password"
               />
-            </div>
-            <div class="form-group">
-              <label style="color: white">Role :</label>
+            
+          </div>
+            <div class="form-group form-inline">
+              <label style="color: white">Role         :</label>
               <input
                 type="tel"
-                id="phone"
+               
                 class="form-control"
-                [(ngModel)]="userType"
-                style="background-color: darkgray"
+                [(ngModel)]="userType"               
                 placeholder="Enter Role"
                 maxlength="10"
                 size="10"
               />
-            </div>
-            <div class="form-group">
+            
               <label style="color: white">Email address :</label>
               <input
                 type="email"
                 class="form-control"
-                [(ngModel)]="email"
-                style="background-color: darkgray"
+                [(ngModel)]="email"                
                 placeholder="Enter email"
               />
             </div>
-            <div class="form-group">
+            <div class="form-group form-inline">
               <label style="color: white">Mobile :</label>
               <input
                 type="text"
+                id="phone"
                 class="form-control"
-                [(ngModel)]="phone"
-                style="background-color: darkgray"
+                [(ngModel)]="phone"                
                 placeholder="Enter Mobile Number"
               />
             </div>
@@ -68,6 +67,7 @@
                 mat-raised-button
                 color="primary"
                 type="button"
+                style="float: right"
                 (click)="CreateRecord()"
                 [disabled]="!name || !email || !phone || !userType"
               >
@@ -77,7 +77,7 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-12 col-md-6 col-lg-6">
+      <!-- <div class="col-sm-12 col-md-6 col-lg-6">
         <div class="card" style="min-width:100%;background-color: #1ABC9C">
           <div class="card-block">
             <h4 class="card-title text-center" style="color: white">
@@ -137,7 +137,7 @@
             </form>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
     <br /><br />
     <div class="row">
@@ -145,7 +145,7 @@
         <div class="card" style="min-width:90%;background-color: #1ABC9C">
           <div class="card-block">
             <h4 class="card-title text-center" style="color: white">Users</h4>
-           
+           <hr>
               <table>
                 <tr>
                   <th style="color: white">First Name</th>
