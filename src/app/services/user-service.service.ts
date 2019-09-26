@@ -14,6 +14,14 @@ export class UserServiceService {
     return this.afs.collection("users").snapshotChanges();
   }
 
+  getUser(uid) {
+    // return this.afs.collection("users").get();
+    return this.afs.collection("users").doc(uid).get();
+  }
+
+
+
+  
   createUser(user: User) {
     const { email, password, userType, phone, name } = user;
     this.afa.auth

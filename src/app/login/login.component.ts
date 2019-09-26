@@ -1,3 +1,4 @@
+import { UserServiceService } from './../services/user-service.service';
 import { Component, OnInit } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { Router } from "@angular/router";
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private afa: AngularFireAuth,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private userservice: UserServiceService
   ) {}
 
   ngOnInit() {
@@ -38,8 +40,14 @@ export class LoginComponent implements OnInit {
     console.log("clicked");
     this.afa.auth
       .signInWithEmailAndPassword(userEmail, userPassword)
-      .then(() => {
+      .then((authenticatedUserData) => {
+        
         this.router.navigate(["home"]);
+        this.userservice.getUser(authenticatedUserData.user.uid).subscribe(user=>{
+          
+          localStorage.setItem("loged_in_user",JSON.stringify(user.data()));
+        });
+
       })
       .catch(error => {
         console.log("error :", error, error.message);
