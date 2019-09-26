@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(["home"]);
         this.userservice.getUser(authenticatedUserData.user.uid).subscribe(user=>{
           
-          localStorage.setItem("loged_in_user",JSON.stringify(user.data()));
+          localStorage.setItem("logged_in_user",JSON.stringify(user.data()));
         });
 
       })
