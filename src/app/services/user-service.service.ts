@@ -14,13 +14,12 @@ export class UserServiceService {
   }
 
   getUser(uid) {
-    // return this.afs.collection("users").get();
-    return this.afs.collection("users").doc(uid).get();
+    return this.afs
+      .collection("users")
+      .doc(uid)
+      .get();
   }
 
-
-
-  
   createUser(user: User) {
     const { email, password } = user;
     this.afa.auth
@@ -42,6 +41,6 @@ export class UserServiceService {
   }
 
   deleteUser(record_id) {
-    this.afs.doc("users/" + record_id).delete();    
+    this.afs.doc("users/" + record_id).delete();
   }
 }
