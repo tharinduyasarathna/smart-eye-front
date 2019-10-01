@@ -26,6 +26,7 @@ import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AuthGuard } from "./guard/auth.guard";
+import { NgxPaginationModule } from 'ngx-pagination';
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
@@ -95,7 +96,8 @@ const appRoutes: Routes = [
     AngularFireDatabaseModule,
     AngularFirestoreModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ],
   providers: [AngularFirestore, UserServiceService,AuthGuard],
   bootstrap: [AppComponent]
