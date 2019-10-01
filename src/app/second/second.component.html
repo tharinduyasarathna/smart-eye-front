@@ -164,7 +164,7 @@
                 <th style="color: white">Remove user</th>
               </tr>
 
-              <tr *ngFor="let user of users">
+              <tr *ngFor="let user of users | paginate: { itemsPerPage: 5, currentPage: p }">
                 <td>{{ user.name }}</td>
                 <td>{{ user.userType }}</td>
                 <td>{{ user.email }}</td>
@@ -181,7 +181,9 @@
                   </span>
                 </td>
               </tr>
+              
             </table>
+            <pagination-controls style="text-align: center" (pageChange)="p = $event"></pagination-controls>
           </div>
         </div>
       </div>

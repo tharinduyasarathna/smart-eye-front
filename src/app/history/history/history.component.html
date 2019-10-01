@@ -5,7 +5,7 @@
         <div class="card" style="min-width:90%;background-color: #1ABC9C">
           <div class="card-block">
             <h4 class="card-title text-center" style="color: white">Images</h4>
-            <div style="overflow-y:scroll; overflow-x: auto">
+            <div style="overflow-y:auto; overflow-x: auto">
               <table fixed-header >
                 <tr>
                   <th style="color: white">Name | Date</th>
@@ -13,7 +13,7 @@
                   <th style="color: white">Remove</th>
                 </tr>
 
-                <tr *ngFor="let image of imageData | async ">
+                <tr *ngFor="let image of imageData | async | paginate: { itemsPerPage: 5, currentPage: p } ">
                   <td>{{image.imgName}}</td>
                   <td><img [src]="image.imgUrl" style="width: 100%; height: 50%;"></td>
                   <td>
@@ -22,8 +22,10 @@
                     </span>
                   </td>
                 </tr>
-                
+               
               </table>
+              <br>
+              <pagination-controls style="text-align: center" (pageChange)="p = $event"></pagination-controls>
             </div>
 
           </div>
