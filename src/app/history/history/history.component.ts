@@ -1,8 +1,10 @@
+import { VideoService } from "./../../services/video/video.service";
 import { Component, OnInit } from "@angular/core";
 import { ImageService } from "src/app/services/image.service";
 import { SafeUrl, DomSanitizer } from "@angular/platform-browser";
 import { Observable } from "rxjs";
 import { ImageData } from "src/app/models/image-data";
+import { VideoData } from "src/app/models/video-data";
 
 @Component({
   selector: "app-history",
@@ -10,19 +12,24 @@ import { ImageData } from "src/app/models/image-data";
   styleUrls: ["./history.component.css"]
 })
 export class HistoryComponent implements OnInit {
-  imageData:Observable<ImageData[]>;
-
+  imageData: Observable<ImageData[]>;
+  videoData: Observable<VideoData[]>;
 
   constructor(
     private imageService: ImageService,
+    private videoService: VideoService,
     private domSanitizer: DomSanitizer
   ) {}
 
   ngOnInit() {
     this.imageData = this.imageService.getImages();
+    this.videoData = this.videoService.getVideos();
   }
 
   RemoveImage(rowID: string) {
     this.imageService.deleteImage(rowID);
+  }
+  RemoveVideo(rowID: string) {
+    this.videoService.deleteVideo(rowID);
   }
 }
