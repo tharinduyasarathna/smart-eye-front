@@ -15,45 +15,9 @@
                 type="text"
                 class="form-control"
                 autocomplete="false"
-                value="{{ currentUser }}"
+                [(ngModel)]="currentUser"
               />
 
-              <label style="color: white">Current Password :</label>
-              <i
-                class="fa fa-unlock-alt icon"
-                style="background-color: #485B6E"
-              ></i>
-              <input
-                type="password"
-                class="form-control"
-                autocomplete="false"
-                placeholder="Enter Current Password"
-              />
-            </div>
-            <div class="form-group form-inline">
-              <label style="color: white">New Password :</label>
-              <i class="fa fa-key icon" style="background-color: #485B6E"></i>
-              <input
-                type="password"
-                class="form-control"
-                placeholder="Enter New Password"
-                maxlength="10"
-                size="10"
-              />
-              <label style="color: white">Confirm Pasword:</label>
-              <i
-                class="fa fa-check-circle icon"
-                style="background-color: #485B6E"
-              ></i>
-              <input
-                type="password"
-                class="form-control"
-                placeholder="Enter New Password Again"
-                maxlength="10"
-                size="10"
-              />
-            </div>
-            <div class="form-group form-inline">
               <label style="color: white">Email address :</label>
               <i
                 class="fa fa-envelope icon"
@@ -62,8 +26,14 @@
               <input
                 type="email"
                 class="form-control"
-                value="{{ currentEmail }}"
+                [(ngModel)]="currentEmail"
               />
+
+             
+            </div>
+            
+            <div class="form-group form-inline">
+              
               <label style="color: white">Mobile :</label>
               <i
                 class="fa fa-phone icon"
@@ -73,7 +43,7 @@
                 type="text"
                 id="phone"
                 class="form-control"
-                value="{{ currentPhone }}"
+                [(ngModel)]="currentPhone"
               />
             </div>
             <span>
@@ -94,6 +64,70 @@
                 (click)="UpdateRecord()"
               >
                 <i class="fas fa-user-plus"></i> Update
+              </button>
+            </span>
+          </div>
+          <div class="card-block">
+            <h4 class="card-title text-center" style="color: white">
+              Change Password
+            </h4>
+            <hr>
+            <div class="form-group form-inline">
+              <label style="color: white">Current Password :</label>
+              <i
+                class="fa fa-unlock-alt icon"
+                style="background-color: #485B6E"
+              ></i>
+              <input
+                type="password"
+                class="form-control"
+                autocomplete="false"
+                placeholder="Enter Current Password"
+              />
+
+              <label style="color: white">New Password :</label>
+              <i class="fa fa-key icon" style="background-color: #485B6E"></i>
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Enter New Password"
+                maxlength="10"
+                size="10"
+              />
+            </div>
+            <div class="form-group form-inline">
+              
+              <label style="color: white">Confirm Pasword:</label>
+              <i
+                class="fa fa-check-circle icon"
+                style="background-color: #485B6E"
+              ></i>
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Enter New Password Again"
+                maxlength="10"
+                size="10"
+              />
+            </div>
+            <span>
+              <button
+                mat-raised-button
+                color="warn"
+                type="button1"
+                style="float: right;margin: 10px"
+                (click)="refresh()"
+              >
+                <i class="fas fa-ban"></i> Cancle
+              </button>
+              <button
+                mat-raised-button
+                color="primary"
+                type="buttonpasswordchange"
+                style="float: right;margin: 10px"
+                (click)="UpdatePassword()"
+              >
+                <i class="fas fa-user-plus"></i> Change Password
               </button>
             </span>
           </div>

@@ -1,3 +1,4 @@
+import { AngularFireAuth } from '@angular/fire/auth';
 import { Component, OnInit } from "@angular/core";
 import { UserServiceService } from "../services/user-service.service";
 import { AngularFireList, AngularFireObject } from "@angular/fire/database";
@@ -15,10 +16,13 @@ export class ProfileComponent implements OnInit {
   currentEmail: any;
   usersRef: AngularFireList<any>;
   userRef: AngularFireObject<any>;
+  currentId: any;
 
-  constructor(private userservice: UserServiceService) {}
+
+  constructor(private userservice: UserServiceService,private afa:AngularFireAuth) {}
 
   ngOnInit() {
+    this.currentId = JSON.parse(localStorage.getItem("logged_in_user")).id;
      this.currentUser = JSON.parse(localStorage.getItem("logged_in_user")).name;
      this.currentEmail = JSON.parse(localStorage.getItem("logged_in_user")).email;
      this.currentPhone = JSON.parse(localStorage.getItem("logged_in_user")).phone;
@@ -38,14 +42,15 @@ export class ProfileComponent implements OnInit {
   //   })
   // }
 
-  UpdateRecord(recordRow) {
+  UpdateRecord() {
+    const {uid} = this.afa.auth.currentUser
+    console.log('uid', uid)
     let record = {};
-    record['name'] = recordRow.name;
-    record['email'] = recordRow.email;
-    record['phone'] = recordRow.phone;
-    record['password'] = recordRow.password;
-    this.userservice.updateUser(recordRow.id, record);
-    recordRow.isEdit = false;
+    record['name'] = this.currentUser;
+    record['email'] = this.currentEmail;
+    record['phone'] = this.currentPhone;
+    console.log('record', record)
+    this.userservice.updateUser(uid, record);
   }
 
   refresh(): void {
