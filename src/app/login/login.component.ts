@@ -3,6 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { Router } from "@angular/router";
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: "app-login",
@@ -12,15 +13,19 @@ import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   errorMessage: any;
+  private  notifier: NotifierService;
 
   constructor(
     private afa: AngularFireAuth,
     private router: Router,
     private fb: FormBuilder,
-    private userservice: UserServiceService
-  ) {}
+    private userservice: UserServiceService,
+    notifierService: NotifierService
+ 
+  ) {this.notifier = notifierService;}
 
   ngOnInit() {
+    
     this.loginForm = this.fb.group({
       userEmail: [
         "",
@@ -42,16 +47,20 @@ export class LoginComponent implements OnInit {
       .signInWithEmailAndPassword(userEmail, userPassword)
       .then((authenticatedUserData) => {
         
-        this.router.navigate(["home"]);
         this.userservice.getUser(authenticatedUserData.user.uid).subscribe(user=>{
           
           localStorage.setItem("logged_in_user",JSON.stringify(user.data()));
+           this.notifier.notify( 'success', "Hi ! Welcome"  );
+           this.router.navigate(["home"]);
         });
 
       })
       .catch(error => {
-        console.log("error :", error, error.message);
-        alert(error.message);
+       //console.log('error', error)
+       // alert(error.message);
+       this.notifier.notify( 'error', "There is no user record corresponding to this identifier !" );
+         
+      
       });
   };
 }
