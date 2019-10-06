@@ -51,6 +51,9 @@ export class ProfileComponent implements OnInit {
     record['phone'] = this.currentPhone;
     console.log('record', record)
     this.userservice.updateUser(uid, record);
+    localStorage.clear();
+    localStorage.setItem("logged_in_user",JSON.stringify(record));
+    this.refresh();
   }
 
   refresh(): void {
