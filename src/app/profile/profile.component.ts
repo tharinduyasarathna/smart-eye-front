@@ -53,7 +53,7 @@ export class ProfileComponent implements OnInit {
     this.userservice.updateUser(uid, record);
     localStorage.clear();
     localStorage.setItem("logged_in_user",JSON.stringify(record));
-    setTimeout(function() { window.location.reload(); }, 2000);
+    setTimeout(function() { window.location.reload(); },2000);
   }
 
   refresh(): void {

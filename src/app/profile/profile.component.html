@@ -13,9 +13,12 @@
               <i class="fa fa-user icon " style="background-color: #485B6E"></i>
               <input
                 type="text"
+                id="name"
                 class="form-control"
                 autocomplete="false"
                 [(ngModel)]="currentUser"
+                required
+                pattern="[A-Za-z]{20}"
               />
 
               <label style="color: white">Email address :</label>
@@ -25,8 +28,11 @@
               ></i>
               <input
                 type="email"
+                id="email"
                 class="form-control"
                 [(ngModel)]="currentEmail"
+                required
+                pattern="(?!test@test\.com$)[a-z0-9._%+-]{3,}@[a-z]{3,}\.[a-z]{2,}(?:\.[a-z]{2,})?"
               />
 
              
@@ -44,6 +50,9 @@
                 id="phone"
                 class="form-control"
                 [(ngModel)]="currentPhone"
+                required
+                placeholder="07x xxx xxxx"
+                pattern="[0-9]{3} [0-9]{3} [0-9]{4}" maxlength="12"
               />
             </div>
             <span>
@@ -62,6 +71,7 @@
                 type="button"
                 style="float: right;margin: 10px"
                 (click)="UpdateRecord()"
+                [disabled]="!currentUser || !currentEmail || !currentPhone"
               >
                 <i class="fas fa-user-plus"></i> Update
               </button>
