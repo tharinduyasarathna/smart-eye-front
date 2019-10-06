@@ -2,12 +2,20 @@ import { Injectable } from "@angular/core";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { User } from "../models/user.model";
 import { AngularFireAuth } from "@angular/fire/auth";
+import { NotifierService } from "angular-notifier";
 
 @Injectable({
   providedIn: "root"
 })
 export class UserServiceService {
-  constructor(private afs: AngularFirestore, private afa: AngularFireAuth) {}
+  private notifier: NotifierService;
+  constructor(
+    private afs: AngularFirestore,
+    private afa: AngularFireAuth,
+    notifierService: NotifierService
+  ) {
+    this.notifier = notifierService;
+  }
 
   getUsers() {
     return this.afs.collection("users").snapshotChanges();
@@ -32,15 +40,24 @@ export class UserServiceService {
           .doc(uid)
           .set(user);
       })
-      .then(() => console.log("Success"));
+      .then(() => {
+        this.notifier.notify("success", "User Created Successfully!");
+      }).catch(error => {
+        this.notifier.notify("error", error);
+      });
     // return this.firestore.collection("users").add(record);
   }
 
   updateUser(recordID, record) {
-    this.afs.collection('users').doc(recordID).update(record);
+    this.afs
+      .collection("users")
+      .doc(recordID)
+      .update(record);
+      this.notifier.notify("info", "User Details Updated!");
   }
 
   deleteUser(record_id) {
     this.afs.doc("users/" + record_id).delete();
+    this.notifier.notify("warning", "User Removed!");
   }
 }

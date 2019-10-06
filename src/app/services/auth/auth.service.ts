@@ -138,6 +138,6 @@ export class AuthService {
   // Sign out
   logout() {
     this.afAuth.auth.signOut().then(res => this.router.navigate(["login"]));
-    this.notifier.notify("info", "Logged Out Successfully!");
+    this.notifier.notify("warning", "Logged Out Successfully!");
   }
 }

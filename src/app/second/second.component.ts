@@ -2,6 +2,7 @@ import { UserServiceService } from "./../services/user-service.service";
 import { User } from "./../models/user.model";
 import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
+import { NotifierService } from "angular-notifier";
 
 @Component({
   selector: "app-second",
@@ -17,8 +18,9 @@ export class SecondComponent implements OnInit {
   password: string;
   userType: string;
   image: string;
+  private  notifier: NotifierService;
 
-  constructor(private userService: UserServiceService) {}
+  constructor(private userService: UserServiceService,notifierService: NotifierService){this.notifier = notifierService;}
 
   ngOnInit() {
     this.userService.getUsers().subscribe(data => {
@@ -46,11 +48,18 @@ export class SecondComponent implements OnInit {
       userType: this.userType
     };
 
-    this.userService.createUser(record);
+    this.userService.createUser(record);    
+     this.name=null;
+     this.email=null;
+     this.phone=null;
+     this.password=null;
+     this.userType=null;
   }
 
   RemoveRecord(rowID) {
+    if(confirm("Are you sure to Remove Record ? ")) {
     this.userService.deleteUser(rowID);
+  }
   }
 
   EditRecord(record) {

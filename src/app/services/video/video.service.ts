@@ -4,15 +4,20 @@ import { DomSanitizer } from "@angular/platform-browser";
 import { map } from "rxjs/operators";
 import { VideoData } from "src/app/models/video-data";
 import * as firebase from "firebase";
+import { NotifierService } from "angular-notifier";
 
 @Injectable({
   providedIn: "root"
 })
 export class VideoService {
+  private  notifier: NotifierService;
   constructor(
     private afs: AngularFirestore,
-    private domSanitizer: DomSanitizer
-  ) {}
+    private domSanitizer: DomSanitizer,
+    notifierService: NotifierService
+    ) {
+      this.notifier = notifierService;
+    }
 
   getVideos() {
     return this.afs
@@ -36,6 +41,7 @@ export class VideoService {
   deleteVideo(record_id: string) {
     // from firestore DB
     this.afs.doc("videoUrl/" + record_id).delete();
+    this.notifier.notify("warning", "Recorded Video Removed from the database !");
 
     //from firebase storage
     var storage = firebase.storage();
