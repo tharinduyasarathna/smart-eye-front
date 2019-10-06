@@ -27,6 +27,9 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AuthGuard } from "./guard/auth.guard";
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NotifierModule, NotifierOptions } from 'angular-notifier';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog/confirmation-dialog.component';
+
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
@@ -37,7 +40,7 @@ const appRoutes: Routes = [
   {
     path: "home",
     component: NavigationComponent,
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       { path: "", redirectTo: "first", pathMatch: "full" },
       {
@@ -73,6 +76,47 @@ const appRoutes: Routes = [
     ]
   }
 ];
+
+const customNotifierOptions: NotifierOptions = {
+  position: {
+		horizontal: {
+			position: 'middle',
+			distance: 12
+		},
+		vertical: {
+			position: 'top',
+			distance: 12,
+			gap: 10
+		}
+	},
+  theme: 'material',
+  behaviour: {
+    autoHide: 5000,
+    onClick: 'hide',
+    onMouseover: 'pauseAutoHide',
+    showDismissButton: true,
+    stacking: 4
+  },
+  animations: {
+    enabled: true,
+    show: {
+      preset: 'slide',
+      speed: 300,
+      easing: 'ease'
+    },
+    hide: {
+      preset: 'fade',
+      speed: 300,
+      easing: 'ease',
+      offset: 50
+    },
+    shift: {
+      speed: 300,
+      easing: 'ease'
+    },
+    overlap: 150
+  }
+};
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,7 +127,9 @@ const appRoutes: Routes = [
     SettingComponent,
     HistoryComponent,
     AboutComponent,
-    ProfileComponent
+    ProfileComponent,
+    ConfirmationDialogComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -97,6 +143,7 @@ const appRoutes: Routes = [
     AngularFirestoreModule,
     ReactiveFormsModule,
     FormsModule,
+    NotifierModule.withConfig(customNotifierOptions),
     NgxPaginationModule
   ],
   providers: [AngularFirestore, UserServiceService,AuthGuard],
