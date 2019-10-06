@@ -20,8 +20,9 @@ export class AuthGuard implements CanActivate {
          return true
        } else  {        
          // Hands the user to the LogIn page 
-         this.notifier.notify( 'error', "You are currently not logged in, please provide Login!" );
+         
          this.router.navigate( ["login"] );
+         this.notifier.notify( 'error', "You are currently not logged in, please provide Login!" );
         // alert("You are currently not logged in, please provide Login!")
         
          return false
