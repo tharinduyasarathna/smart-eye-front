@@ -32,7 +32,6 @@ export class SecondComponent implements OnInit {
           phone: e.payload.doc.data()["phone"],
           userType: e.payload.doc.data()["userType"]
         };
-        
       });
       console.log(this.users);
     });
@@ -48,7 +47,6 @@ export class SecondComponent implements OnInit {
     };
 
     this.userService.createUser(record);
-   
   }
 
   RemoveRecord(rowID) {
@@ -63,16 +61,4 @@ export class SecondComponent implements OnInit {
     record.EditRole = record.Role;
     record.EditPhone = record.Phone;
   }
-
- 
-
-  // create(user:User){
-  //   this.userService.createUser(user);
-  // }
-  // upadte(user:User){
-  //   this.userService.updateUser(user);
-  // }
-  // delete(id:string){
-  //   this.userService.deleteUser(id);
-  // }
 }
