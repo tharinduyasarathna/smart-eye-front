@@ -18,6 +18,7 @@
                 autocomplete="false"
                 [(ngModel)]="currentUser"
                 required
+                placeholder="valied name"
                 pattern="[A-Za-z]{20}"
               />
 
@@ -32,6 +33,7 @@
                 class="form-control"
                 [(ngModel)]="currentEmail"
                 required
+                placeholder="example@abc.com"
                 pattern="(?!test@test\.com$)[a-z0-9._%+-]{3,}@[a-z]{3,}\.[a-z]{2,}(?:\.[a-z]{2,})?"
               />
 

@@ -29,7 +29,7 @@
                 class="form-control"
                 [(ngModel)]="password"
                 autocomplete="false"
-                placeholder="Enter Password"
+                placeholder="Password minimum length is 5 indexes "
                 required
                 minlength="5"
               />
@@ -44,10 +44,11 @@
                 type="tel"
                 class="form-control"
                 [(ngModel)]="userType"
-                placeholder="Enter Role"
+                placeholder="Select Role"
                 maxlength="10"
                 size="10"
                 required
+                
               />
 
               <label style="color: white">Email address :</label>
@@ -59,7 +60,7 @@
                 type="email"
                 class="form-control"
                 [(ngModel)]="email"
-                placeholder="Enter valied email"
+                placeholder="example@abc.com"
                 required
                 pattern="(?!test@test\.com$)[a-z0-9._%+-]{3,}@[a-z]{3,}\.[a-z]{2,}(?:\.[a-z]{2,})?"
               />
