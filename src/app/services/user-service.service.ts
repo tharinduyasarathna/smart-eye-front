@@ -37,7 +37,7 @@ export class UserServiceService {
   }
 
   updateUser(recordID, record) {
-    this.afs.doc("users/" + recordID).update(record);
+    this.afs.collection('users').doc(recordID).update(record);
   }
 
   deleteUser(record_id) {
