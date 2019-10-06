@@ -17,8 +17,11 @@ export class NavigationComponent implements OnInit {
     this.currentUser = JSON.parse(localStorage.getItem("logged_in_user")).name;
   }
   logout() {
-    this.authService.logout();
-    localStorage.clear();
+    if(confirm("Are you sure to Logout ? ")) {
+      this.authService.logout();
+      localStorage.clear();
+    }
+    
     // this.router.navigate(["login"]);
   }
 }

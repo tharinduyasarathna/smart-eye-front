@@ -27,9 +27,11 @@ export class HistoryComponent implements OnInit {
   }
 
   RemoveImage(rowID: string) {
-    this.imageService.deleteImage(rowID);
+    if(confirm("Are you sure to Remove Record ? ")) {
+    this.imageService.deleteImage(rowID);}
   }
   RemoveVideo(rowID: string) {
-    this.videoService.deleteVideo(rowID);
+    if(confirm("Are you sure to Remove Record ? ")) {
+    this.videoService.deleteVideo(rowID);}
   }
 }
