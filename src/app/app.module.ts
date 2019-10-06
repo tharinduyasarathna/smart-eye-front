@@ -28,7 +28,8 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AuthGuard } from "./guard/auth.guard";
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NotifierModule, NotifierOptions } from 'angular-notifier';
-import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog/confirmation-dialog.component';
+
+
 
 
 const appRoutes: Routes = [
@@ -128,7 +129,7 @@ const customNotifierOptions: NotifierOptions = {
     HistoryComponent,
     AboutComponent,
     ProfileComponent,
-    ConfirmationDialogComponent,
+    
     
   ],
   imports: [
@@ -144,7 +145,8 @@ const customNotifierOptions: NotifierOptions = {
     ReactiveFormsModule,
     FormsModule,
     NotifierModule.withConfig(customNotifierOptions),
-    NgxPaginationModule
+    NgxPaginationModule,
+    
   ],
   providers: [AngularFirestore, UserServiceService,AuthGuard],
   bootstrap: [AppComponent]
