@@ -75,8 +75,10 @@
                 id="phone"
                 class="form-control"
                 required
-                [(ngModel)]="phone"        
-                placeholder="07x xxx xxxx" pattern="[0-9]{3} [0-9]{3} [0-9]{4}" maxlength="12"
+                [(ngModel)]="phone"
+                placeholder="07x xxx xxxx"
+                pattern="[0-9]{3} [0-9]{3} [0-9]{4}"
+                maxlength="12"
               />
             </div>
             <span>
@@ -111,7 +113,12 @@
                 <th style="color: white">Remove user</th>
               </tr>
 
-              <tr *ngFor="let user of users | paginate: { itemsPerPage: 5, currentPage: p }">
+              <tr
+                *ngFor="
+                  let user of users
+                    | paginate: { itemsPerPage: 5, currentPage: p }
+                "
+              >
                 <td>{{ user.name }}</td>
                 <td>{{ user.userType }}</td>
                 <td>{{ user.email }}</td>
@@ -128,10 +135,13 @@
                   </span>
                 </td>
               </tr>
-              
             </table>
-            <br>
-            <pagination-controls style="text-align: center" (pageChange)="p = $event"></pagination-controls>
+
+            <br />
+            <pagination-controls
+              style="text-align: center"
+              (pageChange)="p = $event"
+            ></pagination-controls>
           </div>
         </div>
       </div>
