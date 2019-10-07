@@ -7,19 +7,25 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AdminGuard implements CanActivate {
+  currentUserType: any;
   constructor(
     public authService: AuthService,
     public router: Router
-  ){ }
+  ){ 
+}
+ngOnInit() {
+  
+  this.currentUserType = JSON.parse(localStorage.getItem("logged_in_user")).userType;
+ }
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if(this.authService.isLoggedIn()== true ) {
+    if(this.currentUserType== 'admin' ) {
       return true;
     }
       
-      this.router.navigate(['login']);
+      this.router.navigate(['home/first']);
     
     
   }
