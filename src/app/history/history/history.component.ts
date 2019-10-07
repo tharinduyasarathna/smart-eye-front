@@ -1,7 +1,6 @@
 import { VideoService } from "./../../services/video/video.service";
 import { Component, OnInit } from "@angular/core";
 import { ImageService } from "src/app/services/image.service";
-import { SafeUrl, DomSanitizer } from "@angular/platform-browser";
 import { Observable } from "rxjs";
 import { ImageData } from "src/app/models/image-data";
 import { VideoData } from "src/app/models/video-data";
@@ -17,9 +16,7 @@ export class HistoryComponent implements OnInit {
 
   constructor(
     private imageService: ImageService,
-    private videoService: VideoService,
-    private domSanitizer: DomSanitizer
-  ) {}
+    private videoService: VideoService  ) {}
 
   ngOnInit() {
     this.imageData = this.imageService.getImages();
