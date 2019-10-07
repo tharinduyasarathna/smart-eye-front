@@ -103,12 +103,12 @@
     <div class="row">
         <div class="col-md-4 col-sm-6 col-lg-4">
          <div class="card" style="min-width:100%;background-color: #1ABC9C">
-            <div class="card-block" style="background-color: #1ABC9C;padding: 2px;margin: 1.5px">
+            <div class="card-block" style="background-color: #1ABC9C;padding: 2px;margin: 1.5px;margin-top: 8px">
               <h4 class="text-center" style="color: white">System Monitor</h4>
               <hr>
               
             </div> 
-                              <div style="background:darkgray; margin: 5px; " class="custom-control custom-switch text-center">
+                              <div style="background:darkgray; margin: 5px;margin-bottom: 20px" class="custom-control custom-switch text-center">
                       <div class="col-md-8">
                           <h4>Memory</h4>
                           <canvas id="mChart" width="400" height="400"></canvas>
@@ -125,12 +125,12 @@
       </div>
       <div class="col-md-4 col-sm-6 col-lg-4">
         <div class="card" style="min-width:100%;background-color: #1ABC9C">
-           <div class="card-block" style="background-color: #1ABC9C;padding: 2px;margin: 1.5px">
+           <div class="card-block" style="background-color: #1ABC9C;padding: 2px;margin: 1.5px;margin-top: 8px">
              <h4 class="text-center" style="color: white">System Monitor</h4>
              <hr>
             </div>
           
-                <div style="background:darkgray;margin: 5px;" class="custom-control custom-switch text-center">
+                <div style="background:darkgray;margin: 5px;margin-bottom: 18px" class="custom-control custom-switch text-center">
                     <div class="col-md-8">
                       <h4>Cpu Load Average</h4>
                       <canvas id="cChart"  width="400" height="400"></canvas>
@@ -146,20 +146,13 @@
      </div>
      <div class="col-md-4 col-sm-6 col-lg-4">
       <div class="card" style="min-width:100%;background-color: #1ABC9C">
-         <div class="card-block" style="background-color: #1ABC9C">
-           <h4 class="text-center" style="color: white">System Monitor</h4>
+         <div class="card-block" style="background-color: #1abc9c">
+           <h4 class="text-center" style="color: white">Recently Deteced </h4>
            <hr>
-           <h5 class="text-center" style="background-color: black;color: white"><i class="fas fa-envelope 5x"></i> Alert Status</h5>
-         </div>
-         <br>
-         <div class="custom-control custom-switch text-center">
-           Off
-           <label class="switch">
-             <input type="checkbox">
-             <span class="slider round"></span>
-           </label>
-           On
-         </div>
+           
+              
+              <img style="width: 100%; height: 33%;" [src]="lastImg" />
+          
          
          
         

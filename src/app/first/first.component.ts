@@ -10,7 +10,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
   styleUrls: ['./first.component.css']
 })
 export class FirstComponent implements OnInit {
-
+  lastImg="";
   constructor(private afs:AngularFirestore) { 
     
   }
@@ -33,7 +33,11 @@ export class FirstComponent implements OnInit {
     this.afs.collection('metadata').doc('dashboard-settings').valueChanges().subscribe((data)=>{
       this.alarm = data['alarm'];
       this.notification = data['notification']
-    })
+    });
+    this.afs.collection('images',ref=> ref.orderBy('timestamp','desc')).valueChanges().subscribe((data)=>{
+      this.lastImg = 'data:image/png;base64,'+data[0]['imgUrl'];
+      //console.log('this.lastImg', this.lastImg)
+    });
     const ctx = document.getElementById('mChart');
     const doughnutGraphData = {
       datasets: [{
