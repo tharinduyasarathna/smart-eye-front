@@ -11,9 +11,11 @@ export class AppComponent {
   loginState;
   
   constructor(private router:Router){
-    this.loginState = JSON.parse(localStorage.getItem("logged_in_user")).name;
+    this.loginState = localStorage.getItem("logged_in_user");
       if(this.loginState != null){
           this.router.navigate(['home/first']);
+      }else{
+        // this.router.navigate(['']);
       }
   }
 }
