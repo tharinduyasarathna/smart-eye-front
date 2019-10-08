@@ -3,6 +3,7 @@ import { AngularFirestore } from "@angular/fire/firestore";
 import { User } from "../models/user.model";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { NotifierService } from "angular-notifier";
+import * as firebase from "firebase";
 
 @Injectable({
   providedIn: "root"
@@ -53,11 +54,35 @@ export class UserServiceService {
       .collection("users")
       .doc(recordID)
       .update(record);
+      var user = firebase.auth().currentUser;
+     
+      user.updatePassword(record.password).then(function() {
+        // Update successful
+        console.log('record', record.password)
+      }).catch(function(error) {
+        console.log('error', error)
+      });
       this.notifier.notify("info", "User Details Updated!");
   }
 
   deleteUser(record_id) {
     this.afs.doc("users/" + record_id).delete();
     this.notifier.notify("warning", "User Removed!");
+  }
+
+  updateUserPassWord(recordID, record) {
+    this.afs
+      .collection("users")
+      .doc(recordID)
+      .update(record);
+      var user = firebase.auth().currentUser;
+     
+      user.updatePassword(record.password).then(function() {
+        // Update successful
+        console.log('record', record.password)
+      }).catch(function(error) {
+        console.log('error', error)
+      });
+      this.notifier.notify("info", "Logged out in few seconds , Please Sign with new credentials!");
   }
 }

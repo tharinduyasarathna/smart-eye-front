@@ -3,6 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { UserServiceService } from "../services/user-service.service";
 import { AngularFireList, AngularFireObject } from "@angular/fire/database";
 import { User } from "../models/user.model";
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: "app-profile",
@@ -17,34 +18,28 @@ export class ProfileComponent implements OnInit {
   usersRef: AngularFireList<any>;
   userRef: AngularFireObject<any>;
   currentId: any;
+  currentPassword: any;
+  oldpassword: string;
+  newpassword: string;
+  newpasswordconfirmation: string;
+  private  notifier: NotifierService;
 
 
-  constructor(private userservice: UserServiceService,private afa:AngularFireAuth) {}
+  constructor(private userservice: UserServiceService,private afa:AngularFireAuth,notifierService: NotifierService) {this.notifier = notifierService;}
 
   ngOnInit() {
     this.currentId = JSON.parse(localStorage.getItem("logged_in_user")).id;
      this.currentUser = JSON.parse(localStorage.getItem("logged_in_user")).name;
      this.currentEmail = JSON.parse(localStorage.getItem("logged_in_user")).email;
      this.currentPhone = JSON.parse(localStorage.getItem("logged_in_user")).phone;
+     this.currentPassword = JSON.parse(localStorage.getItem("logged_in_user")).password;
      this.user = JSON.parse(localStorage.getItem("logged_in_user"));
     
   }
 
-  // UpdateUser(id, user: User) {
-  //   this.userRef.update({
-  //    name: user.name,
-  //    email:user.email,
-  //    phone:user.phone,
-  //    password:user.password
-  //   })
-  //   .catch(error => {
-  //    console.log('error', error);
-  //   })
-  // }
-
   UpdateRecord() {
     const {uid} = this.afa.auth.currentUser
-    console.log('uid', uid)
+    console.log('uid',this.afa.auth.currentUser)
     let record = {};
     record['name'] = this.currentUser;
     record['email'] = this.currentEmail;
@@ -54,6 +49,30 @@ export class ProfileComponent implements OnInit {
     localStorage.clear();
     localStorage.setItem("logged_in_user",JSON.stringify(record));
     setTimeout(function() { window.location.reload(); },2000);
+  }
+
+  ChangePassword(){
+    const {uid} = this.afa.auth.currentUser
+    let password ={};
+     this.oldpassword ;
+     this.newpassword;
+     this.newpasswordconfirmation;
+console.log('pwd', this.currentPassword)
+    if(this.currentPassword == this.oldpassword){
+      
+      if(this.newpassword == this.newpasswordconfirmation){
+        password['password'] = this.newpassword;
+        this.userservice.updateUserPassWord(uid, password);
+        this.notifier.notify( 'success', "Successfully changed password !"  );
+        
+        localStorage.clear();
+        setTimeout(function() { window.location.reload(); },2000);
+      }else{
+        this.notifier.notify( 'error', "New password is not match, Please correct !" );
+      }
+    }else{
+        this.notifier.notify( 'error', "Sorry ! Entered password is wrong , Please check it again" );
+    }
   }
 
   refresh(): void {
