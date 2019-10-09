@@ -1,3 +1,4 @@
+import { AuthService } from './../services/auth/auth.service';
 import { UserServiceService } from './../services/user-service.service';
 import { Component, OnInit } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
@@ -14,15 +15,18 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   errorMessage: any;
   private  notifier: NotifierService;
+  isForgotPassword: boolean;
+  userEmail:string;
 
   constructor(
     private afa: AngularFireAuth,
     private router: Router,
     private fb: FormBuilder,
     private userservice: UserServiceService,
-    notifierService: NotifierService
+    private notifierService: NotifierService,
+    private authService:AuthService
  
-  ) {this.notifier = notifierService;}
+  ) {this.notifier = notifierService; this.isForgotPassword = false;}
 
   ngOnInit() {
     
@@ -63,4 +67,19 @@ export class LoginComponent implements OnInit {
       
       });
   };
+
+  forgotPassword() {
+    console.log('this.userEmail', this.userEmail);
+    this.authService.ForgotPassword(this.userEmail)
+   
+      .then(res => {
+        console.log(res);
+        this.isForgotPassword = false;
+        
+      }, error => {
+        this.notifier.notify("error", error);
+       
+      });
+  }
+  
 }
