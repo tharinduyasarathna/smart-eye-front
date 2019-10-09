@@ -56,12 +56,12 @@ export class UserServiceService {
       .update(record);
       var user = firebase.auth().currentUser;
      
-      user.updatePassword(record.password).then(function() {
-        // Update successful
-        console.log('record', record.password)
-      }).catch(function(error) {
-        console.log('error', error)
-      });
+      // user.updatePassword(record.password).then(function() {
+      //   // Update successful
+      //   console.log('record', record.password)
+      // }).catch(function(error) {
+      //   console.log('error', error)
+      // });
       this.notifier.notify("info", "User Details Updated!");
   }
 
