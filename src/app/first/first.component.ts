@@ -24,14 +24,14 @@ export class FirstComponent implements OnInit {
   status:any[];
 
   // Checkbox status check
-  alarm = false;
+  triggeralarm = false;
   notification = false;
 
   @Input() name: string;
 
   ngOnInit() {
-    this.afs.collection('metadata').doc('dashboard-settings').valueChanges().subscribe((data)=>{
-      this.alarm = data['alarm'];
+    this.afs.collection('metadata').doc('common-settings').valueChanges().subscribe((data)=>{
+      this.triggeralarm = data['triggeralarm'];
       this.notification = data['notification']
     });
     this.afs.collection('images',ref=> ref.orderBy('timestamp','desc')).valueChanges().subscribe((data)=>{
@@ -117,9 +117,9 @@ export class FirstComponent implements OnInit {
   }
 
   checkboxToggle =  (type:string) => {
-    if(type === "alarm"){
-      this.afs.collection('metadata').doc('dashboard-settings').update({
-        alarm : !this.alarm,
+    if(type === "triggeralarm"){
+      this.afs.collection('metadata').doc('common-settings').update({
+        triggeralarm : !this.triggeralarm,
   
       })
     }else{
