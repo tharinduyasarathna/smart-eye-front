@@ -4,6 +4,7 @@ import { UserServiceService } from "../services/user-service.service";
 import { AngularFireList, AngularFireObject } from "@angular/fire/database";
 import { User } from "../models/user.model";
 import { NotifierService } from 'angular-notifier';
+import * as CryptoJS from '../../../node_modules/crypto-js';
 
 @Component({
   selector: "app-profile",
@@ -54,7 +55,9 @@ export class ProfileComponent implements OnInit {
   ChangePassword(){
     const {uid} = this.afa.auth.currentUser
     let password ={};
-     this.oldpassword ;
+   // this.oldpassword=this.encryptData(this.oldpassword);
+      console.log('this.oldpassword', this.oldpassword);
+      this.oldpassword;
      this.newpassword;
      this.newpasswordconfirmation;
 console.log('pwd', this.currentPassword)
@@ -77,5 +80,14 @@ console.log('pwd', this.currentPassword)
 
   refresh(): void {
     window.location.reload();
+}
+
+encryptData(data) {
+
+  try {
+    return CryptoJS.AES.encrypt(JSON.stringify(data), '22796').toString();
+  } catch (e) {
+    console.log(e);
+  }
 }
 }
