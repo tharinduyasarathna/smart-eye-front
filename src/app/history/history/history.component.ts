@@ -4,6 +4,7 @@ import { ImageService } from "src/app/services/image.service";
 import { Observable } from "rxjs";
 import { ImageData } from "src/app/models/image-data";
 import { VideoData } from "src/app/models/video-data";
+import Swal from "sweetalert2";
 
 @Component({
   selector: "app-history",
@@ -16,7 +17,8 @@ export class HistoryComponent implements OnInit {
 
   constructor(
     private imageService: ImageService,
-    private videoService: VideoService  ) {}
+    private videoService: VideoService
+  ) {}
 
   ngOnInit() {
     this.imageData = this.imageService.getImages();
@@ -24,11 +26,53 @@ export class HistoryComponent implements OnInit {
   }
 
   RemoveImage(rowID: string) {
-    if(confirm("Are you sure to Remove Record ? ")) {
-    this.imageService.deleteImage(rowID);}
+    Swal.fire({
+      title: "<p style='color: white'>Are you sure to Remove Record ? </p>",
+      text: "You will not be able to recover this imaginary file!",
+      type: "warning",
+      showCancelButton: true,
+      showCloseButton: true,
+      focusConfirm: false,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, keep it",
+      cancelButtonColor: "#3085d6",
+      confirmButtonColor: "#d33",
+      background: "rgba(43, 165, 137, 0.90)",
+      backdrop: `
+      rgba(52, 73, 94,0.75)
+        center left
+        no-repeat
+      `
+    }).then(result => {
+      if (result.value) {
+        this.imageService.deleteImage(rowID);
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+      }
+    });
   }
   RemoveVideo(rowID: string) {
-    if(confirm("Are you sure to Remove Record ? ")) {
-    this.videoService.deleteVideo(rowID);}
+    Swal.fire({
+      title: "<p style='color: white'>Are you sure to Remove Record ? </p>",
+      text: "You will not be able to recover this imaginary file!",
+      type: "warning",
+      showCancelButton: true,
+      showCloseButton: true,
+      focusConfirm: false,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, keep it",
+      cancelButtonColor: "#3085d6",
+      confirmButtonColor: "#d33",
+      background: "rgba(43, 165, 137, 0.90)",
+      backdrop: `
+      rgba(52, 73, 94,0.75)
+        center left
+        no-repeat
+      `
+    }).then(result => {
+      if (result.value) {
+        this.videoService.deleteVideo(rowID);
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+      }
+    });
   }
 }

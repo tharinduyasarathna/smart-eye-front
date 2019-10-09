@@ -3,6 +3,7 @@ import { User } from "./../models/user.model";
 import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { NotifierService } from "angular-notifier";
+import Swal from "sweetalert2";
 
 @Component({
   selector: "app-second",
@@ -18,9 +19,14 @@ export class SecondComponent implements OnInit {
   password: string;
   userType: string;
   image: string;
-  private  notifier: NotifierService;
+  private notifier: NotifierService;
 
-  constructor(private userService: UserServiceService,notifierService: NotifierService){this.notifier = notifierService;}
+  constructor(
+    private userService: UserServiceService,
+    notifierService: NotifierService
+  ) {
+    this.notifier = notifierService;
+  }
 
   ngOnInit() {
     this.userService.getUsers().subscribe(data => {
@@ -48,18 +54,38 @@ export class SecondComponent implements OnInit {
       userType: this.userType
     };
 
-    this.userService.createUser(record);    
-     this.name=null;
-     this.email=null;
-     this.phone=null;
-     this.password=null;
-     this.userType=null;
+    this.userService.createUser(record);
+    this.name = null;
+    this.email = null;
+    this.phone = null;
+    this.password = null;
+    this.userType = null;
   }
 
   RemoveRecord(rowID) {
-    if(confirm("Are you sure to Remove Record ? ")) {
-    this.userService.deleteUser(rowID);
-  }
+    Swal.fire({
+      title: "<p style='color: white'>Are you sure to Remove User Record ?</p> ",
+      text: "You will not be able to recover this record!",
+      type: "warning",
+      showCancelButton: true,
+      showCloseButton: true,
+      focusConfirm: false,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, keep it",
+      cancelButtonColor: "#3085d6",
+      confirmButtonColor: "#d33",
+      background: "rgba(43, 165, 137, 0.90)",
+      backdrop: `
+      rgba(52, 73, 94,0.75)
+        center left
+        no-repeat
+      `
+    }).then(result => {
+      if (result.value) {
+        this.userService.deleteUser(rowID);
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+      }
+    });
   }
 
   EditRecord(record) {
