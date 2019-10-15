@@ -14,11 +14,21 @@ import Swal from "sweetalert2";
 export class HistoryComponent implements OnInit {
   imageData: Observable<ImageData[]>;
   videoData: Observable<VideoData[]>;
+  currentUserType;
+  disableRemoveButton: boolean;
 
   constructor(
     private imageService: ImageService,
     private videoService: VideoService
-  ) {}
+  ) {
+    this.currentUserType = JSON.parse(localStorage.getItem("logged_in_user")).userType;
+    if(this.currentUserType == 'admin'){
+       this.disableRemoveButton = false;
+    }else{
+      this.disableRemoveButton=true;
+  
+    }
+  }
 
   ngOnInit() {
     this.imageData = this.imageService.getImages();
