@@ -11,11 +11,21 @@ import Swal from "sweetalert2";
 })
 export class NavigationComponent implements OnInit {
   currentUser;
+  currentUserType;
+   showUserTab : boolean ;
 
   constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem("logged_in_user")).name;
+    this.currentUserType = JSON.parse(localStorage.getItem("logged_in_user")).userType;
+    if(this.currentUserType == 'admin'){
+       this.showUserTab = true;
+    }else{
+      this.showUserTab=false;
+  
+    }
+
   }
   logout() {
     Swal.fire({
