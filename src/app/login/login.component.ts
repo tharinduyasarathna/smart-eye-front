@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
     const userPassword = this.loginForm.controls["userPassword"].value;
     console.log("clicked");
     this.afa.auth
-      .signInWithEmailAndPassword(userEmail, userPassword)
+      .signInWithEmailAndPassword(userEmail,window.btoa(userPassword) )
       .then((authenticatedUserData) => {
         
         this.userservice.getUser(authenticatedUserData.user.uid).subscribe(user=>{
