@@ -50,7 +50,7 @@ export class SecondComponent implements OnInit {
       name: this.name,
       email: this.email,
       phone: this.phone,
-      password: this.password,
+      password: window.btoa( this.password),
       userType: this.userType
     };
 
