@@ -62,10 +62,10 @@ export class ProfileComponent implements OnInit {
      this.newpassword;
      this.newpasswordconfirmation;
 console.log('pwd', this.currentPassword)
-    if(this.currentPassword == this.oldpassword){
+    if(this.currentPassword == window.btoa(this.oldpassword)){
       
       if(this.newpassword == this.newpasswordconfirmation){
-        password['password'] = this.newpassword;
+        password['password'] = window.btoa(this.newpassword);
         this.userservice.updateUserPassWord(uid, password);
         this.notifier.notify( 'success', "Successfully changed password !"  );
         
