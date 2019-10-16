@@ -54,6 +54,7 @@ export class LoginComponent implements OnInit {
         this.userservice.getUser(authenticatedUserData.user.uid).subscribe(user=>{
           
           localStorage.setItem("logged_in_user",JSON.stringify(user.data()));
+          localStorage.setItem("logged_in_user_id",JSON.stringify(authenticatedUserData.user.uid));
            this.notifier.notify( 'success', "Hi ! Welcome"  );
            this.router.navigate(["home"]);
         });
