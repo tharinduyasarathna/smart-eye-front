@@ -20,6 +20,7 @@ export class SecondComponent implements OnInit {
   userType: string;
   image: string;
   private notifier: NotifierService;
+  uid;
 
   constructor(
     private userService: UserServiceService,
@@ -43,6 +44,7 @@ export class SecondComponent implements OnInit {
       });
       console.log(this.users);
     });
+    this.uid = JSON.parse(localStorage.getItem("logged_in_user_id"));
   }
 
   CreateRecord() {
@@ -50,7 +52,7 @@ export class SecondComponent implements OnInit {
       name: this.name,
       email: this.email,
       phone: this.phone,
-      password: window.btoa( this.password),
+      password: window.btoa(this.password),
       userType: this.userType
     };
 
@@ -63,29 +65,40 @@ export class SecondComponent implements OnInit {
   }
 
   RemoveRecord(rowID) {
-    Swal.fire({
-      title: "<p style='color: white'>Are you sure to Remove User Record ?</p> ",
-      text: "You will not be able to recover this record!",
-      type: "warning",
-      showCancelButton: true,
-      showCloseButton: true,
-      focusConfirm: false,
-      confirmButtonText: "Yes, delete it!",
-      cancelButtonText: "No, keep it",
-      cancelButtonColor: "#3085d6",
-      confirmButtonColor: "#d33",
-      background: "rgba(43, 165, 137, 0.90)",
-      backdrop: `
+    if (this.uid == rowID) {
+      console.log("uid", this.uid);
+      console.log("rowID", rowID);
+      this.notifier.notify(
+        "error",
+        "Sorry !! , You can not remove root user !"
+      );
+    } else {
+      Swal.fire({
+        title:
+          "<p style='color: white'>Are you sure to Remove User Record ?</p> ",
+        text: "You will not be able to recover this record!",
+        type: "warning",
+        showCancelButton: true,
+        showCloseButton: true,
+        focusConfirm: false,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, keep it",
+        cancelButtonColor: "#3085d6",
+        confirmButtonColor: "#d33",
+        background: "rgba(43, 165, 137, 0.90)",
+        backdrop: `
       rgba(52, 73, 94,0.75)
         center left
         no-repeat
       `
-    }).then(result => {
-      if (result.value) {
-        this.userService.deleteUser(rowID);
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-      }
-    });
+      }).then(result => {
+        console.log("object", rowID);
+        if (result.value) {
+          this.userService.deleteUser(rowID);
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+        }
+      });
+    }
   }
 
   EditRecord(record) {
