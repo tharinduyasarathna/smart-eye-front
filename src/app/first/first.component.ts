@@ -123,7 +123,7 @@ export class FirstComponent implements OnInit {
   
       })
     }else{
-      this.afs.collection('metadata').doc('dashboard-settings').update({
+      this.afs.collection('metadata').doc('common-settings').update({
         notification : !this.notification,
   
       })
